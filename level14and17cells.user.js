@@ -660,7 +660,7 @@ function wrapper(plugin_info) {
     // the level 6 cells have noticible errors with non-geodesic lines - and the larger level 4 cells are worse
     // NOTE: we only draw two of the edges. as we draw all cells on screen, the other two edges will either be drawn
     // from the other cell, or be off screen so we don't care
-    var region = L.geodesicPolyline([corners[0],corners[1],corners[2]], {fill: false, color: color, opacity: 1.0, weight: 1, clickable: false });
+    var region = L.geodesicPolyline([corners[0],corners[1],corners[2]], {fill: false, color: color, opacity: 1.0, weight: weight, clickable: false });
 
     window.plugin.regions.regionLayer.addLayer(region);
 
