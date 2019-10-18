@@ -646,16 +646,21 @@ function wrapper(plugin_info) {
 
     // name
     var name = window.plugin.regions.regionName(cell);
+    var color = 'Black';
     var weight = 1;
-    if (cell.level == 18)
-        var color = 'DeepPink';
-    if (cell.level == 17)
-        var color = '#289AFF';
-    if (cell.level == 14)
-        var color = 'Red';
+    if (cell.level == 18) {
+        color = 'DeepPink';
+    }
+    if (cell.level == 17) {
+        color = '#289AFF';
+    }
+    if (cell.level == 14) {
+        color = 'Red';
         weight = 2;
-    if(cell.level == 6)
-        var color = 'Magenta';
+    }
+    if (cell.level == 6) {
+        color = 'Magenta';
+    }
 
     // the level 6 cells have noticible errors with non-geodesic lines - and the larger level 4 cells are worse
     // NOTE: we only draw two of the edges. as we draw all cells on screen, the other two edges will either be drawn
