@@ -583,14 +583,14 @@ function wrapper(plugin_info) {
     //alert("zoom_level=" + zoom);
     var maxzoom = 16;
     // make both cells...
-    var cell18 = S2.S2Cell.FromLatLng ( map.getCenter(), 18 );
+    var cell19 = S2.S2Cell.FromLatLng ( map.getCenter(), 19 );
     var cell17 = S2.S2Cell.FromLatLng ( map.getCenter(), 17 );
     var cell14 = S2.S2Cell.FromLatLng ( map.getCenter(), 14 );
     var cell6 = S2.S2Cell.FromLatLng ( map.getCenter(), 6 );
-    //if (zoom >= 18) {
-    //    // only draw 18's when we are close in
-    //    drawCellAndNeighbors(cell18);
-    //}
+    if (zoom >= 18) {
+        // only draw 19's when we are close in
+        drawCellAndNeighbors(cell19);
+    }
     //if ( zoom >= 20 )
     //{
     //  drawCellAndNeighbors(cell18);
@@ -648,8 +648,8 @@ function wrapper(plugin_info) {
     var name = window.plugin.regions.regionName(cell);
     var color = 'Black';
     var weight = 1;
-    if (cell.level == 18) {
-        color = 'DeepPink';
+    if (cell.level == 19) {
+        color = 'Orange';
     }
     if (cell.level == 17) {
         color = '#FF50CF';
