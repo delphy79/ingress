@@ -652,7 +652,7 @@ function wrapper(plugin_info) {
         color = 'DeepPink';
     }
     if (cell.level == 17) {
-        color = '#B24BE5';
+        color = '#FF50CF';
     }
     if (cell.level == 14) {
         color = 'Red';
