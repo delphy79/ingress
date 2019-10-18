@@ -646,12 +646,14 @@ function wrapper(plugin_info) {
 
     // name
     var name = window.plugin.regions.regionName(cell);
+    var weight = 1;
     if (cell.level == 18)
         var color = 'DeepPink';
     if (cell.level == 17)
         var color = '#289AFF';
     if (cell.level == 14)
-        var color = 'Black';
+        var color = 'Red';
+        weight = 2;
     if(cell.level == 6)
         var color = 'Magenta';
 
