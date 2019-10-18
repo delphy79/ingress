@@ -652,10 +652,10 @@ function wrapper(plugin_info) {
         color = 'DeepPink';
     }
     if (cell.level == 17) {
-        color = '#FF9100';
+        color = 'Red';
     }
     if (cell.level == 14) {
-        color = 'Red';
+        color = 'Gray';
         weight = 2;
     }
     if (cell.level == 6) {
