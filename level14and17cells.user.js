@@ -587,10 +587,10 @@ function wrapper(plugin_info) {
     var cell17 = S2.S2Cell.FromLatLng ( map.getCenter(), 17 );
     var cell14 = S2.S2Cell.FromLatLng ( map.getCenter(), 14 );
     var cell6 = S2.S2Cell.FromLatLng ( map.getCenter(), 6 );
-    //if (zoom >= 18) {
-    //    // only draw 19's when we are close in
-    //    drawCellAndNeighbors(cell19);
-    //}
+    if (zoom >= 20) {
+        // only draw 19's when we are close in
+        drawCellAndNeighbors(cell19);
+    }
     //if ( zoom >= 20 )
     //{
     //  drawCellAndNeighbors(cell18);
