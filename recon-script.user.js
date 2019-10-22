@@ -6,8 +6,8 @@
 // @author       DELPHY79
 // @match        https://wayfarer.nianticlabs.com/review
 // @grant        none
-// @downloadURL  https://raw.githubusercontent.com/delphy79/ingress/master/recon-script.user.js
-// @updateURL    https://raw.githubusercontent.com/delphy79/ingress/master/recon-script.user.js
+// @downloadURL  https://github.com/delphy79/ingress/raw/master/recon-script.user.js
+// @updateURL    https://github.com/delphy79/ingress/raw/master/recon-script.user.js
 // @require      https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js
 // ==/UserScript==
 
