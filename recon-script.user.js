@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         wayfarer review script
+// @name         recon-script.user.js
 // @namespace    https://open.kakao.com/o/gVhrW8Z
 // @version      0.1
 // @description  hello world
