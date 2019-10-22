@@ -15,9 +15,7 @@
     'use strict';
 
     // Your code here...
-    setTimeout(() => {
-        fn_init();
-    }, 250);
+    setTimeout("fn_init", 250);
 })();
 
 var w = typeof unsafeWindow === 'undefined' ? window : unsafeWindow;
