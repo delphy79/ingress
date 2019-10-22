@@ -15,7 +15,7 @@
     'use strict';
 
     // Your code here...
-    setTimeout("fn_init", 250);
+    setTimeout(function() {fn_init();}, 250);
 })();
 
 function fn_init() {
