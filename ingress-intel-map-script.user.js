@@ -27,6 +27,9 @@ async function fn_init() {
         if ($("#map_canvas")) {
             clearInterval(mapInterval);
 
+            $("#comm").hide();
+            $("#filters_container").hide();
+
             M.setCenter({lat:37.555107, lng:126.674491});
             M.setZoom(15);
 
