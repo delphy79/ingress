@@ -18,9 +18,8 @@
     setTimeout("fn_init", 250);
 })();
 
-var w = typeof unsafeWindow === 'undefined' ? window : unsafeWindow;
-
 function fn_init() {
+    var w = typeof unsafeWindow === 'undefined' ? window : unsafeWindow;
     w.$scope = element => w.angular.element(element).scope();
     var NewSubmissionController = w.document.getElementById('NewSubmissionController');
     var subCtrl = w.$scope(NewSubmissionController).subCtrl;
