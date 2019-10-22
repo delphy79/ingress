@@ -435,7 +435,7 @@ async function fn_init() {
                 var cell17 = S2.S2Cell.FromLatLng ( M.getCenter().toJSON(), 17 );
                 var cell14 = S2.S2Cell.FromLatLng ( M.getCenter().toJSON(), 14 );
                 var cell6 = S2.S2Cell.FromLatLng ( M.getCenter().toJSON(), 6 );
-                if (zoom >= 17) {
+                if (zoom >= 18) {
                     // only draw 19's when we are close in
                     drawCellAndNeighbors(cell19);
                 }
