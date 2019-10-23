@@ -33,7 +33,9 @@ async function fn_init() {
     }
 
     w.onkeydown = function(event) {
-        if (event.keyCode >= 49 && event.keyCode <= 53) {
+        var keyCode = event.keyCode;
+        if ((keyCode >= 49 && keyCode <= 53) || (keyCode >= 97 && keyCode <= 101)) {
+            if (keyCode > 90) keyCode = keyCode - 48; //넘버패드
             var five_stars = $(".five-stars");
             var five_stars_obj = null;
             var check_num = -1;
@@ -46,7 +48,7 @@ async function fn_init() {
             }
             if (five_stars_obj != null) {
                 var five_stars_obj_children = $(five_stars_obj).children("button");
-                $(five_stars_obj_children.get(event.keyCode-49)).click();
+                $(five_stars_obj_children.get(keyCode-49)).click();
                 $(five_stars_obj).removeClass("test-red");
                 if (check_num < 5) {
                     $(five_stars.get(check_num+1)).addClass("test-red");
@@ -55,7 +57,7 @@ async function fn_init() {
                     $("#content-container").animate({scrollTop: $("body").height()}, 500);
                 }
             }
-        } else if (event.keyCode == 13) {
+        } else if (keyCode == 13) {
             if ($(".modal-dialog").length == 0) {
                 $("#submitDiv").children().click(); //제출
             } else {
