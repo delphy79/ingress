@@ -34,34 +34,51 @@ async function fn_init() {
 
     w.onkeydown = function(event) {
         var keyCode = event.keyCode;
-        if ((keyCode >= 49 && keyCode <= 53) || (keyCode >= 97 && keyCode <= 101)) {
-            if (keyCode > 90) keyCode = keyCode - 48; //넘버패드
-            var five_stars = $(".five-stars");
-            var five_stars_obj = null;
-            var check_num = -1;
-            for (var i=0; i<five_stars.length; i++) {
-                if ($(five_stars.get(i)).hasClass("test-red")) {
-                    five_stars_obj = five_stars.get(i);
-                    check_num = i;
-                    break;
+        if ($("#low-quality-modal").length == 0) {
+            if ((keyCode >= 49 && keyCode <= 53) || (keyCode >= 97 && keyCode <= 101)) {
+                if (keyCode > 90) keyCode = keyCode - 48; //넘버패드
+                var five_stars = $(".five-stars");
+                var five_stars_obj = null;
+                var check_num = -1;
+                for (var i=0; i<five_stars.length; i++) {
+                    if ($(five_stars.get(i)).hasClass("test-red")) {
+                        five_stars_obj = five_stars.get(i);
+                        check_num = i;
+                        break;
+                    }
+                }
+                if (five_stars_obj != null) {
+                    var five_stars_obj_children = $(five_stars_obj).children("button");
+                    $(five_stars_obj_children.get(keyCode-49)).click();
+                    if (check_num > 0) {
+                        $(five_stars_obj).removeClass("test-red");
+                        if (check_num < 5) {
+                            $(five_stars.get(check_num+1)).addClass("test-red");
+                        }
+                        if (check_num == 3) {
+                            $("#content-container").animate({scrollTop: $("body").height()}, 500);
+                        }
+                    }
+                }
+            } else if (keyCode == 13) {
+                if ($(".modal-dialog").length == 0) {
+                    $("#submitDiv").children().click(); //제출
+                } else {
+                    $(".modal-dialog").children().children().children().children("button").click(); //다음후보
                 }
             }
-            if (five_stars_obj != null) {
-                var five_stars_obj_children = $(five_stars_obj).children("button");
-                $(five_stars_obj_children.get(keyCode-49)).click();
-                $(five_stars_obj).removeClass("test-red");
-                if (check_num < 5) {
-                    $(five_stars.get(check_num+1)).addClass("test-red");
-                }
-                if (check_num == 3) {
-                    $("#content-container").animate({scrollTop: $("body").height()}, 500);
-                }
-            }
-        } else if (keyCode == 13) {
-            if ($(".modal-dialog").length == 0) {
-                $("#submitDiv").children().click(); //제출
-            } else {
-                $(".modal-dialog").children().children().children().children("button").click(); //다음후보
+        } else { //리젝
+           if ((keyCode >= 49 && keyCode <= 57) || (keyCode >= 97 && keyCode <= 105)) {
+               if (keyCode > 90) keyCode = keyCode - 48; //넘버패드
+               var low_quality_modal = w.document.getElementById('low-quality-modal');
+               var answerCtrl2 = w.$scope(low_quality_modal).answerCtrl2;
+               var reject_reason = $("#reject-reason").children("li").children("ul");
+               var reject_reason_children = $(reject_reason).children("li").get(keyCode-49);
+               if (reject_reason_children != undefined) {
+                   $(reject_reason_children).children("label").click();
+               }
+            } else if (keyCode == 13) {
+                $(".button-primary").click(); //제출
             }
         }
     }
