@@ -50,14 +50,12 @@ async function fn_init() {
                 if (five_stars_obj != null) {
                     var five_stars_obj_children = $(five_stars_obj).children("button");
                     $(five_stars_obj_children.get(keyCode-49)).click();
-                    if (check_num > 0) {
-                        $(five_stars_obj).removeClass("test-red");
-                        if (check_num < 5) {
-                            $(five_stars.get(check_num+1)).addClass("test-red");
-                        }
-                        if (check_num == 3) {
-                            $("#content-container").animate({scrollTop: $("body").height()}, 500);
-                        }
+                    $(five_stars_obj).removeClass("test-red");
+                    if (check_num < 5) {
+                        $(five_stars.get(check_num+1)).addClass("test-red");
+                    }
+                    if (check_num == 3) {
+                        $("#content-container").animate({scrollTop: $("body").height()}, 500);
                     }
                 }
             } else if (keyCode == 13) {
