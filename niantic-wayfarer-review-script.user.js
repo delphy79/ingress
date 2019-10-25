@@ -50,12 +50,14 @@ async function fn_init() {
                 if (five_stars_obj != null) {
                     var five_stars_obj_children = $(five_stars_obj).children("button");
                     $(five_stars_obj_children.get(keyCode-49)).click();
-                    $(five_stars_obj).removeClass("test-red");
-                    if (check_num < 5) {
-                        $(five_stars.get(check_num+1)).addClass("test-red");
-                    }
-                    if (check_num == 3) {
-                        $("#content-container").animate({scrollTop: $("body").height()}, 500);
+                    if (check_num != 0 || keyCode != 49) {
+                        $(five_stars_obj).removeClass("test-red");
+                        if (check_num < 5) {
+                            $(five_stars.get(check_num+1)).addClass("test-red");
+                        }
+                        if (check_num == 3) {
+                            $("#content-container").animate({scrollTop: $("body").height()}, 500);
+                        }
                     }
                 }
             } else if (keyCode == 13) {
@@ -71,9 +73,36 @@ async function fn_init() {
                var low_quality_modal = w.document.getElementById('low-quality-modal');
                var answerCtrl2 = w.$scope(low_quality_modal).answerCtrl2;
                var reject_reason = $("#reject-reason").children("li").children("ul");
-               var reject_reason_children = $(reject_reason).children("li").get(keyCode-49);
-               if (reject_reason_children != undefined) {
-                   $(reject_reason_children).children("label").click();
+               var reject_reason_children = null;
+               if (!answerCtrl2.checkedSg1 && !answerCtrl2.checkedSg2 && !answerCtrl2.checkedSg3 && !answerCtrl2.checkedSg4 && !answerCtrl2.checkedSg5) {
+                   reject_reason_children = $(reject_reason).children("li").get(keyCode-49);
+                   if (reject_reason_children != undefined) {
+                       $(reject_reason_children).children("label").click();
+                   }
+               } else {
+                   $(reject_reason).children("li").each(function() {
+                       if ($(this).children("ul").css("display") != "none") {
+                           reject_reason_children = this;
+                           return;
+                       }
+                   });
+                   var group_list = $(reject_reason_children).children("ul");
+                   var group_list_children = $(group_list).children("li").get(keyCode-49);
+                   if (group_list_children != undefined) {
+                       var target = $(group_list_children).children("a").get(0);
+                       answerCtrl2.checkedSg1 = false;
+                       answerCtrl2.checkedSg2 = false;
+                       answerCtrl2.checkedSg3 = false;
+                       answerCtrl2.checkedSg4 = false;
+                       answerCtrl2.checkedSg5 = false;
+                       answerCtrl2.checkedG1 = false;
+                       var rootLabel = document.getElementById("root-label");
+                       rootLabel.innerText = target.text;
+                       answerCtrl2.rejectReasonHelp = target.getAttribute("help");
+                       answerCtrl2.formData.rejectReason = target.id;
+                       answerCtrl2.formData.spam = true;
+                       $(reject_reason_children).children("label").click();
+                   }
                }
             } else if (keyCode == 13) {
                 $(".button-primary").click(); //제출
