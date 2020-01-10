@@ -1,9 +1,9 @@
-﻿// ==UserScript==
-// @id             iitc-plugin-l17_l14cells@blsmit5728
+// ==UserScript==
+// @id             level14and17cells
 // @name           IITC plugin: Show Level 14&17 S2 Cells
 // @author         blsmit5728
 // @category       Layer
-// @version        0.5.0
+// @version        0.6.0
 // @namespace      https://github.com/blsmit5728/level14and17S2IITC
 // @updateURL      https://raw.githubusercontent.com/blsmit5728/level14and17S2IITC/master/level14and17cells.user.js
 // @downloadURL    https://raw.githubusercontent.com/blsmit5728/level14and17S2IITC/master/level14and17cells.user.js
@@ -581,7 +581,7 @@ function wrapper(plugin_info) {
     // centre cell
     var zoom = map.getZoom();
     //alert("zoom_level=" + zoom);
-    var maxzoom = 16;
+    var maxzoom = 19;
     // make both cells...
     var cell19 = S2.S2Cell.FromLatLng ( map.getCenter(), 19 );
     var cell17 = S2.S2Cell.FromLatLng ( map.getCenter(), 17 );
@@ -591,10 +591,6 @@ function wrapper(plugin_info) {
         // only draw 19's when we are close in
         drawCellAndNeighbors(cell19);
     }
-    //if ( zoom >= 20 )
-    //{
-    //  drawCellAndNeighbors(cell18);
-    //}
     if (zoom >= 16) {  
         // only draw 17's when we are close in
         drawCellAndNeighbors(cell17);            
@@ -602,10 +598,8 @@ function wrapper(plugin_info) {
     if (zoom >= 13) {
         drawCellAndNeighbors(cell14);
     }
-    if (zoom <= 10)
-    {
-      if(zoom >=6)
-      {
+    if (zoom <= 10) {
+      if(zoom >=6) {
         drawCellAndNeighbors(cell6);
       }
     }
@@ -646,6 +640,7 @@ function wrapper(plugin_info) {
 
     // name
     var name = window.plugin.regions.regionName(cell);
+    
     var color = 'Black';
     var weight = 1;
     if (cell.level == 19) {
