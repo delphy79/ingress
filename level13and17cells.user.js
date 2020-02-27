@@ -1,13 +1,13 @@
 // ==UserScript==
-// @id             level14and17cells
-// @name           IITC plugin: Show Level 14&17 S2 Cells
-// @author         blsmit5728
+// @id             level13and17cells
+// @name           IITC plugin: Show Level 13&17 S2 Cells
+// @author         delphy79
 // @category       Layer
-// @version        0.6.0
+// @version        0.1.0
 // @namespace      https://github.com/blsmit5728/level14and17S2IITC
-// @updateURL      https://raw.githubusercontent.com/blsmit5728/level14and17S2IITC/master/level14and17cells.user.js
-// @downloadURL    https://raw.githubusercontent.com/blsmit5728/level14and17S2IITC/master/level14and17cells.user.js
-// @description    IITC: Shows level 17 and Level 14 cells on the map
+// @updateURL      https://raw.githubusercontent.com/delphy79/ingress/master/level13and17cells.user.js
+// @downloadURL    https://raw.githubusercontent.com/delphy79/ingress/master/level13and17cells.user.js
+// @description    IITC: Shows level 13 and Level 17 cells on the map
 // @include        https://*.ingress.com/intel*
 // @include        http://*.ingress.com/intel*
 // @match          https://*.ingress.com/intel*
@@ -586,7 +586,7 @@ function wrapper(plugin_info) {
     var cell19 = S2.S2Cell.FromLatLng ( map.getCenter(), 19 );
     var cell17 = S2.S2Cell.FromLatLng ( map.getCenter(), 17 );
     var cell14 = S2.S2Cell.FromLatLng ( map.getCenter(), 14 );
-    var cell6 = S2.S2Cell.FromLatLng ( map.getCenter(), 6 );
+    var cell13 = S2.S2Cell.FromLatLng ( map.getCenter(), 13 );
     if (zoom >= 19) {
         // only draw 19's when we are close in
         drawCellAndNeighbors(cell19);
@@ -598,10 +598,8 @@ function wrapper(plugin_info) {
     if (zoom >= 13) {
         drawCellAndNeighbors(cell14);
     }
-    if (zoom <= 10) {
-      if(zoom >=6) {
-        drawCellAndNeighbors(cell6);
-      }
+    if (zoom >=10) {
+        drawCellAndNeighbors(cell13);
     }
 
 
@@ -653,8 +651,9 @@ function wrapper(plugin_info) {
         color = 'Red';
         weight = 2;
     }
-    if (cell.level == 6) {
+    if (cell.level == 13) {
         color = 'Magenta';
+        weight = 2;
     }
 
     // the level 6 cells have noticible errors with non-geodesic lines - and the larger level 4 cells are worse
