@@ -652,7 +652,7 @@ function wrapper(plugin_info) {
         weight = 2;
     }
     if (cell.level == 13) {
-        color = 'Magenta';
+        color = 'Black';
         weight = 2;
     }
 
