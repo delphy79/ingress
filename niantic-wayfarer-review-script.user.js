@@ -62,7 +62,7 @@ async function fn_init() {
                 }
             } else if (keyCode == 13) {
                 if ($(".modal-dialog").length == 0) {
-                    $("#submitDiv").children().click(); //제출
+                    $("#submit-bottom").children().click(); //제출
                 } else {
                     $(".modal-dialog").children().children().children().children("button").click(); //다음후보
                 }
