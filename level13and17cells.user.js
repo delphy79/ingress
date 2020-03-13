@@ -583,7 +583,7 @@ function wrapper(plugin_info) {
     //alert("zoom_level=" + zoom);
     var maxzoom = 19;
     // make both cells...
-    var cell19 = S2.S2Cell.FromLatLng ( map.getCenter(), 19 );
+    var cell19 = S2.S2Cell.FromLatLng ( map.getCenter(), 18 );
     var cell17 = S2.S2Cell.FromLatLng ( map.getCenter(), 17 );
     var cell14 = S2.S2Cell.FromLatLng ( map.getCenter(), 14 );
     var cell13 = S2.S2Cell.FromLatLng ( map.getCenter(), 13 );
