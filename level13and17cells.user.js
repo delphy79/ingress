@@ -596,7 +596,7 @@ function wrapper(plugin_info) {
     if (zoom >= 13) {
         drawCellAndNeighbors(cell14);
     }
-    if (zoom >=10) {
+    if (zoom >= 12) {
         drawCellAndNeighbors(cell13);
     }
 
