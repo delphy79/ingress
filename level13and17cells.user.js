@@ -583,16 +583,14 @@ function wrapper(plugin_info) {
     //alert("zoom_level=" + zoom);
     var maxzoom = 19;
     // make both cells...
-    var cell19 = S2.S2Cell.FromLatLng ( map.getCenter(), 18 );
+    var cell18 = S2.S2Cell.FromLatLng ( map.getCenter(), 18 );
     var cell17 = S2.S2Cell.FromLatLng ( map.getCenter(), 17 );
     var cell14 = S2.S2Cell.FromLatLng ( map.getCenter(), 14 );
     var cell13 = S2.S2Cell.FromLatLng ( map.getCenter(), 13 );
-    if (zoom >= 19) {
-        // only draw 19's when we are close in
-        drawCellAndNeighbors(cell19);
+    if (zoom >= 17) {
+        drawCellAndNeighbors(cell18);
     }
     if (zoom >= 16) {  
-        // only draw 17's when we are close in
         drawCellAndNeighbors(cell17);            
     }
     if (zoom >= 13) {
