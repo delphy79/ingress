@@ -528,7 +528,7 @@ function fn_init() {
     }
 	
 	var timeElem;
-	
+
 	function createTimer(){
 		var header = document.getElementsByClassName("niantic-wayfarer-logo")[0];
 		var headerTimer = document.createElement("div");
@@ -541,6 +541,8 @@ function fn_init() {
 		header.parentNode.appendChild(headerTimer);
 		//updateTimer();
 	}
+	
+	createTimer();
 
     var low_quality_modal = document.getElementById("low-quality-modal");
     if (low_quality_modal != null) return;
@@ -566,8 +568,6 @@ function fn_init() {
                     }
                 }
             });
-			
-			createTimer();
         }
     }, 100);
 }
