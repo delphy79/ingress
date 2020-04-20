@@ -24,20 +24,19 @@ function fn_init() {
 	var tDiff = subctrl.pageData.expires - Date.now();
 
 	if (tDiff > 0){
-		var tDiffMin = Math.floor(tDiff/1000/60);
-		var tDiffSec = Math.ceil(tDiff/1000 - 60*tDiffMin);
-
-		timeElem.innerText = pad(tDiffMin,2) + ":" + pad(tDiffSec,2);
-		//Retrigger function in 1 second
-		setTimeout(function() { updateTimer(subctrl); }, 1000);
+	    var tDiffMin = Math.floor(tDiff/1000/60);
+	    var tDiffSec = Math.ceil(tDiff/1000 - 60*tDiffMin);
+            timeElem.innerText = pad(tDiffMin,2) + ":" + pad(tDiffSec,2);
+	    //Retrigger function in 1 second
+	    setTimeout(function() { updateTimer(subctrl); }, 1000);
 	} else {
-		timeElem.innerText = "EXPIRED!";
-		timeElem.setAttribute("style", "color: red;");
+	    timeElem.innerText = "EXPIRED!";
+	    timeElem.setAttribute("style", "color: red;");
 	}
     }
 
     function pad(num, size) {
-	var s = num+"";
+	var s = num + "";
 	while (s.length < size) s = "0" + s;
 	return s;
     }
