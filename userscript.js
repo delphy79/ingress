@@ -489,7 +489,7 @@ function fn_init() {
 	var header = document.getElementsByClassName("niantic-wayfarer-logo")[0];
 	var headerTimer = document.createElement("div");
 	headerTimer.innerText = "";
-	headerTimer.setAttribute("style", "display: inline-block; margin-left: 5em;");
+	headerTimer.setAttribute("style", "display: inline-block; margin-left: 5em; text-align: right;");
 	timeElem = document.createElement("div");
 	timeElem.innerText = "??:??";
 	timeElem.style.display = "inline-block";
