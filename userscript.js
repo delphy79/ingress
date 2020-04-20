@@ -9,7 +9,7 @@ function fn_init() {
     function createTimer(subctrl) {
 	var header = document.getElementsByClassName("niantic-wayfarer-logo")[0];
 	var headerTimer = document.createElement("div");
-	headerTimer.innerText = "Time: ";
+	headerTimer.innerText = "";
 	headerTimer.setAttribute("style", "display: inline-block; margin-left: 5em;");
 	timeElem = document.createElement("div");
 	timeElem.innerText = "??:??";
