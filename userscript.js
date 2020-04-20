@@ -5,7 +5,8 @@ function fn_init() {
     w.$scope = element => w.angular.element(element).scope();
 
     var timeElem;
-    function createTimer(){
+
+    function createTimer(subctrl) {
 	var header = document.getElementsByClassName("niantic-wayfarer-logo")[0];
 	var headerTimer = document.createElement("div");
 	headerTimer.innerText = "Time: ";
@@ -15,11 +16,12 @@ function fn_init() {
 	timeElem.style.display = "inline-block";
 	headerTimer.appendChild(timeElem);
 	header.parentNode.appendChild(headerTimer);
-	updateTimer();
+	    
+	updateTimer(subctrl);
     }
 
-    function updateTimer(){
-	var tDiff = nSubCtrl.pageData.expires - Date.now();
+    function updateTimer(subctrl) {
+	var tDiff = subctrl.pageData.expires - Date.now();
 
 	if (tDiff > 0){
 		var tDiffMin = Math.floor(tDiff/1000/60);
@@ -39,8 +41,6 @@ function fn_init() {
 	while (s.length < size) s = "0" + s;
 	return s;
     }
-	
-    createTimer();
 
     var S2 = w.S2 = { L: {} };
 
@@ -573,6 +573,8 @@ function fn_init() {
     var pageDateInterval = setInterval(function() {
         if (subCtrl.pageData != undefined) {
             clearInterval(pageDateInterval);
+		
+	    createTimer(subCtrl);
             
             var obj = document.getElementsByClassName("answer-header")[0].getElementsByTagName("DIV")[0].getElementsByTagName("H3")[0].getElementsByTagName("SPAN")[0];
             if (subCtrl.pageData.nearbyPortals.length > 0) checkNearby(subCtrl, obj);
