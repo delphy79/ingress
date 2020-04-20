@@ -592,11 +592,11 @@ function fn_init() {
                     }
                 }
             });
+            
+	    var topBtn = document.createElement('button');
+	    var topBtnText = document.createTextNode('Top');
+	    topBtn.appendChild(topBtnText);
+	    document.body.appendChild(topBtn);
         }
     }, 100);
-
-    var topBtn = document.createElement('button');
-    var topBtnText = document.createTextNode('Top');
-    topBtn.appendChild(topBtnText);
-    document.body.appendChild(topBtn);
 }
