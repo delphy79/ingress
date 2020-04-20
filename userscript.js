@@ -594,7 +594,7 @@ function fn_init() {
             });
             
 	    var topBtn = document.createElement('button');
-	    topBtn.setAttribute("style", "display: inline-block; z-index: 9999; position: absolute; left: 0em; bottom: 0em;");
+	    topBtn.setAttribute("style", "z-index: 9999; position: absolute; left: 0em; bottom: 0em;");
 	    var topBtnText = document.createTextNode('Top');
 	    topBtn.appendChild(topBtnText);
 	    document.body.appendChild(topBtn);
