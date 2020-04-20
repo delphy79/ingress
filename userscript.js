@@ -526,6 +526,21 @@ function fn_init() {
             map: map
         });
     }
+	
+	var timeElem;
+	
+	function createTimer(){
+		var header = document.getElementsByClassName("niantic-wayfarer-logo")[0];
+		var headerTimer = document.createElement("div");
+		headerTimer.innerText = "Time remaining: ";
+		headerTimer.setAttribute("style", "display: inline-block; margin-left: 5em;");
+		timeElem = document.createElement("div");
+		timeElem.innerText = "??:??";
+		timeElem.style.display = "inline-block";
+		headerTimer.appendChild(timeElem);
+		header.parentNode.appendChild(headerTimer);
+		//updateTimer();
+	}
 
     var low_quality_modal = document.getElementById("low-quality-modal");
     if (low_quality_modal != null) return;
@@ -551,22 +566,8 @@ function fn_init() {
                     }
                 }
             });
+			
+			createTimer();
         }
     }, 100);
-	
-	var timeElem;
-	document.addEventListener("WFPAllRevHooked", createTimer);
-	
-    function createTimer(){
-		var header = document.getElementsByClassName("niantic-wayfarer-logo")[0];
-		var headerTimer = document.createElement("div");
-		headerTimer.innerText = "Time remaining: ";
-		headerTimer.setAttribute("style", "display: inline-block; margin-left: 5em;");
-		timeElem = document.createElement("div");
-		timeElem.innerText = "??:??";
-		timeElem.style.display = "inline-block";
-		headerTimer.appendChild(timeElem);
-		header.parentNode.appendChild(headerTimer);
-		//updateTimer();
-	}
 }
