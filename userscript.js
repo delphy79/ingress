@@ -595,7 +595,10 @@ function fn_init() {
             
 	    var topBtn = document.createElement('button');
 	    topBtn.setAttribute("style", "z-index: 9999; position: absolute; left: 0em; top: 50%;");
-	    var topBtnText = document.createTextNode('Top1');
+	    topBtn.onclick = function() {
+		document.body.scrollTop = 0;
+	    };
+	    var topBtnText = document.createTextNode('Top');
 	    topBtn.appendChild(topBtnText);
 	    document.body.appendChild(topBtn);
         }
