@@ -594,6 +594,7 @@ function fn_init() {
             });
             
 	    var topBtn = document.createElement('button');
+	    topBtn.setAttribute("style", "display: inline-block; z-index: 9999;");
 	    var topBtnText = document.createTextNode('Top');
 	    topBtn.appendChild(topBtnText);
 	    document.body.appendChild(topBtn);
