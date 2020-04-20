@@ -532,7 +532,7 @@ function fn_init() {
 	function createTimer(){
 		var header = document.getElementsByClassName("niantic-wayfarer-logo")[0];
 		var headerTimer = document.createElement("div");
-		headerTimer.innerText = "Time remaining: ";
+		headerTimer.innerText = "Time: ";
 		headerTimer.setAttribute("style", "display: inline-block; margin-left: 5em;");
 		timeElem = document.createElement("div");
 		timeElem.innerText = "??:??";
