@@ -494,7 +494,7 @@ function fn_getAddress() {
                     if (results[0]) {
                         var obj = document.getElementsByClassName("answer-header")[0].getElementsByTagName("DIV")[0].getElementsByTagName("H3")[0].getElementsByTagName("SPAN")[0];
                         
-                        if (subCtrl.pageData.nearbyPortals.length > 0) checkNearby(obj);
+                        if (subCtrl.pageData.nearbyPortals.length == 0) checkNearby(obj);
                         
                         var formatted_address = results[0].formatted_address;
                         formatted_address = encodeURI(formatted_address).replace("%EB%8C%80%ED%95%9C%EB%AF%BC%EA%B5%AD", "");
