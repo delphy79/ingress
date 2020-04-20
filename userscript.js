@@ -1,8 +1,8 @@
 setTimeout(function() {fn_init();}, 100);
 
 function fn_init() {
-    var low_quality_modal = document.getElementById("low-quality-modal");
-    if (low_quality_modal != null) return;
+    //var low_quality_modal = document.getElementById("low-quality-modal");
+    //if (low_quality_modal != null) return;
     
     var w = typeof unsafeWindow === 'undefined' ? window : unsafeWindow;
     w.$scope = element => w.angular.element(element).scope();
