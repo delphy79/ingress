@@ -1,6 +1,6 @@
-setTimeout(function() {fn_getAddress();}, 250);
+//setTimeout(function() {fn_getAddress();}, 250);
 
-function fn_getAddress() {
+//function fn_getAddress() {
     var w = typeof unsafeWindow === 'undefined' ? window : unsafeWindow;
     w.$scope = element => w.angular.element(element).scope();
 
@@ -553,4 +553,20 @@ function fn_getAddress() {
             });
         }
     }, 100);
-}
+//}
+
+/*document.addEventListener("WFPAllRevHooked", createTimer);
+
+function createTimer(){
+	var header = document.getElementsByClassName("niantic-wayfarer-logo")[0];
+	var headerTimer = document.createElement("div");
+	headerTimer.innerText = "Time remaining: ";
+	headerTimer.setAttribute("style", "display: inline-block; margin-left: 5em;");
+	headerTimer.setAttribute("class", "revExprTimer");
+	timeElem = document.createElement("div");
+	timeElem.innerText = "??:??";
+	timeElem.style.display = "inline-block";
+	headerTimer.appendChild(timeElem);
+	header.parentNode.appendChild(headerTimer);
+	updateTimer();
+}*/
