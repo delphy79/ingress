@@ -29,7 +29,7 @@ function fn_init() {
 
 		timeElem.innerText = pad(tDiffMin,2) + ":" + pad(tDiffSec,2);
 		//Retrigger function in 1 second
-		setTimeout(updateTimer, 1000);
+		setTimeout(function() { updateTimer(subctrl); }, 1000);
 	} else {
 		timeElem.innerText = "EXPIRED!";
 		timeElem.setAttribute("style", "color: red;");
