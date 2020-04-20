@@ -594,6 +594,9 @@ function fn_init() {
             });
         }
     }, 100);
-	
-    document.body.appendChild('<div style="position: absolute; z-index: 99999; left: 0em; bottom : 0em; width: 1em; height: 1em;">▲</div>');
+
+    var topBtn = document.createElement('button');
+    var topBtnText = document.createTextNode('Top');
+    topBtn.appendChild(topBtnText);
+    document.body.appendChild(topBtn);
 }
