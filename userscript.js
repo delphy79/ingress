@@ -479,6 +479,53 @@ function fn_getAddress() {
     S2.S2Cell.nextKey = S2.nextKey = function (key) {
         return S2.stepKey(key, 1);
     };
+    
+    function checkNearby(subctrl, obj) {
+        var d = distance(subctrl.pageData.lat, subctrl.pageData.lng, subctrl.pageData.nearbyPortals[0].lat, subctrl.pageData.nearbyPortals[0].lng);
+        if (d < 20) {
+            obj.innerHTML +=  "<font style='color: red'>&nbsp;Too Close</font>";
+        }
+    }
+
+    function distance(lat1, lon1, lat2, lon2) {
+        if ((lat1 == lat2) && (lon1 == lon2)) {
+            return 0;
+        }
+        else {
+            var radlat1 = Math.PI * lat1/180;
+            var radlat2 = Math.PI * lat2/180;
+            var theta = lon1-lon2;
+            var radtheta = Math.PI * theta/180;
+            var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+            if (dist > 1) {
+                dist = 1;
+            }
+            dist = Math.acos(dist);
+            dist = dist * 180/Math.PI;
+            dist = dist * 60 * 1.1515;
+
+            dist = dist * 1609.344
+            return dist;
+        }
+    }
+
+    function addS2(map, lat, lng, lvl) {
+        var cell = window.S2.S2Cell.FromLatLng({lat: lat, lng: lng}, lvl);
+
+        var cellCorners = cell.getCornerLatLngs();
+        cellCorners[4] = cellCorners[0]; //Loop it
+
+        var polyline = new google.maps.Polyline({
+            path: cellCorners,
+            geodesic: true,
+            fillColor: 'grey',
+            fillOpacity: 0.2,
+            strokeColor: '#00FF00',
+            strokeOpacity: 1.0,
+            strokeWeight: 1,
+            map: map
+        });
+    }
 
     var low_quality_modal = document.getElementById("low-quality-modal");
     if (low_quality_modal != null) return;
@@ -488,67 +535,19 @@ function fn_getAddress() {
     var pageDateInterval = setInterval(function() {
         if (subCtrl.pageData != undefined) {
             clearInterval(pageDateInterval);
+            
+            var obj = document.getElementsByClassName("answer-header")[0].getElementsByTagName("DIV")[0].getElementsByTagName("H3")[0].getElementsByTagName("SPAN")[0];
+            if (subCtrl.pageData.nearbyPortals.length > 0) checkNearby(subCtrl, obj);
+            addS2(subCtrl.map, subCtrl.pageData.lat, subCtrl.pageData.lng, 17);
+            addS2(subCtrl.map2, subCtrl.pageData.lat, subCtrl.pageData.lng, 17);
+            
             var geocoder = new google.maps.Geocoder;
             geocoder.geocode({'location': {lat: parseFloat(subCtrl.pageData.lat), lng: parseFloat(subCtrl.pageData.lng)}}, function(results, status) {
                 if (status === 'OK') {
                     if (results[0]) {
-                        var obj = document.getElementsByClassName("answer-header")[0].getElementsByTagName("DIV")[0].getElementsByTagName("H3")[0].getElementsByTagName("SPAN")[0];
-                        obj.innerHTML +=  "<font style='color: red'>&nbsp;Too Close</font>";
-                        if (subCtrl.pageData.nearbyPortals.length > 0) checkNearby(obj);
-                        
                         var formatted_address = results[0].formatted_address;
                         formatted_address = encodeURI(formatted_address).replace("%EB%8C%80%ED%95%9C%EB%AF%BC%EA%B5%AD", "");
                         obj.innerHTML += "<br><font style='color: red; font-size: 15px;'>"+decodeURI(formatted_address)+"</font>";
-                        
-                        addS2(subCtrl.map, subCtrl.pageData.lat, subCtrl.pageData.lng, 17);
-                        addS2(subCtrl.map2, subCtrl.pageData.lat, subCtrl.pageData.lng, 17);
-
-                        function checkNearby(obj) {
-                            var d = distance(subCtrl.pageData.lat, subCtrl.pageData.lng, subCtrl.pageData.nearbyPortals[0].lat, subCtrl.pageData.nearbyPortals[0].lng);
-                            if (d < 20) {
-                                obj.innerHTML +=  "<font style='color: red'>&nbsp;Too Close</font>";
-                            }
-                        }
-
-                        function distance(lat1, lon1, lat2, lon2) {
-                            if ((lat1 == lat2) && (lon1 == lon2)) {
-                                return 0;
-                            }
-                            else {
-                                var radlat1 = Math.PI * lat1/180;
-                                var radlat2 = Math.PI * lat2/180;
-                                var theta = lon1-lon2;
-                                var radtheta = Math.PI * theta/180;
-                                var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
-                                if (dist > 1) {
-                                    dist = 1;
-                                }
-                                dist = Math.acos(dist);
-                                dist = dist * 180/Math.PI;
-                                dist = dist * 60 * 1.1515;
-
-                                dist = dist * 1609.344
-                                return dist;
-                            }
-                        }
-
-                        function addS2(map, lat, lng, lvl) {
-                            var cell = window.S2.S2Cell.FromLatLng({lat: lat, lng: lng}, lvl);
-
-                            var cellCorners = cell.getCornerLatLngs();
-                            cellCorners[4] = cellCorners[0]; //Loop it
-
-                            var polyline = new google.maps.Polyline({
-                                path: cellCorners,
-                                geodesic: true,
-                                fillColor: 'grey',
-                                fillOpacity: 0.2,
-                                strokeColor: '#00FF00',
-                                strokeOpacity: 1.0,
-                                strokeWeight: 1,
-                                map: map
-                            });
-                        }
                     }
                 }
             });
