@@ -594,9 +594,9 @@ function fn_init() {
             });
             
 	    var topBtn = document.createElement('button');
-	    topBtn.setAttribute("style", "z-index: 9999; position: absolute; left: 0em; top: 70%; width: 1em; height: 1em;");
+	    topBtn.setAttribute("style", "z-index: 9999; position: absolute; left: 0em; top: 70%;");
 	    topBtn.onclick = function() {
-		alert("");
+		document.html.scrollTop = 0;
 	    };
 	    var topBtnText = document.createTextNode('Top');
 	    topBtn.appendChild(topBtnText);
