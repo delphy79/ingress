@@ -3,6 +3,23 @@ setTimeout(function() {fn_init();}, 100);
 function fn_init() {
     var w = typeof unsafeWindow === 'undefined' ? window : unsafeWindow;
     w.$scope = element => w.angular.element(element).scope();
+	
+	var timeElem;
+
+	function createTimer(){
+		var header = document.getElementsByClassName("niantic-wayfarer-logo")[0];
+		var headerTimer = document.createElement("div");
+		headerTimer.innerText = "Time: ";
+		headerTimer.setAttribute("style", "display: inline-block; margin-left: 5em;");
+		timeElem = document.createElement("div");
+		timeElem.innerText = "??:??";
+		timeElem.style.display = "inline-block";
+		headerTimer.appendChild(timeElem);
+		header.parentNode.appendChild(headerTimer);
+		//updateTimer();
+	}
+	
+	createTimer();
 
     var S2 = w.S2 = { L: {} };
 
@@ -527,23 +544,6 @@ function fn_init() {
         });
     }
 	
-	var timeElem;
-
-	function createTimer(){
-		var header = document.getElementsByClassName("niantic-wayfarer-logo")[0];
-		var headerTimer = document.createElement("div");
-		headerTimer.innerText = "Time: ";
-		headerTimer.setAttribute("style", "display: inline-block; margin-left: 5em;");
-		timeElem = document.createElement("div");
-		timeElem.innerText = "??:??";
-		timeElem.style.display = "inline-block";
-		headerTimer.appendChild(timeElem);
-		header.parentNode.appendChild(headerTimer);
-		//updateTimer();
-	}
-	
-	createTimer();
-
     var low_quality_modal = document.getElementById("low-quality-modal");
     if (low_quality_modal != null) return;
 
