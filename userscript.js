@@ -1,45 +1,13 @@
 setTimeout(function() {fn_init();}, 100);
 
 function fn_init() {
+    var low_quality_modal = document.getElementById("low-quality-modal");
+    if (low_quality_modal != null) return;
+    
     var w = typeof unsafeWindow === 'undefined' ? window : unsafeWindow;
     w.$scope = element => w.angular.element(element).scope();
 
     var timeElem;
-
-    function createTimer(subctrl) {
-	var header = document.getElementsByClassName("niantic-wayfarer-logo")[0];
-	var headerTimer = document.createElement("div");
-	headerTimer.innerText = "";
-	headerTimer.setAttribute("style", "display: inline-block; margin-left: 5em;");
-	timeElem = document.createElement("div");
-	timeElem.innerText = "??:??";
-	timeElem.style.display = "inline-block";
-	headerTimer.appendChild(timeElem);
-	header.parentNode.appendChild(headerTimer);
-	    
-	updateTimer(subctrl);
-    }
-
-    function updateTimer(subctrl) {
-	var tDiff = subctrl.pageData.expires - Date.now();
-
-	if (tDiff > 0){
-	    var tDiffMin = Math.floor(tDiff/1000/60);
-	    var tDiffSec = Math.ceil(tDiff/1000 - 60*tDiffMin);
-            timeElem.innerText = pad(tDiffMin,2) + ":" + pad(tDiffSec,2);
-	    //Retrigger function in 1 second
-	    setTimeout(function() { updateTimer(subctrl); }, 1000);
-	} else {
-	    timeElem.innerText = "EXPIRED!";
-	    timeElem.setAttribute("style", "color: red;");
-	}
-    }
-
-    function pad(num, size) {
-	var s = num + "";
-	while (s.length < size) s = "0" + s;
-	return s;
-    }
 
     var S2 = w.S2 = { L: {} };
 
@@ -516,6 +484,41 @@ function fn_init() {
     S2.S2Cell.nextKey = S2.nextKey = function (key) {
         return S2.stepKey(key, 1);
     };
+	
+    function createTimer(subctrl) {
+	var header = document.getElementsByClassName("niantic-wayfarer-logo")[0];
+	var headerTimer = document.createElement("div");
+	headerTimer.innerText = "";
+	headerTimer.setAttribute("style", "display: inline-block; margin-left: 5em;");
+	timeElem = document.createElement("div");
+	timeElem.innerText = "??:??";
+	timeElem.style.display = "inline-block";
+	headerTimer.appendChild(timeElem);
+	header.parentNode.appendChild(headerTimer);
+	    
+	updateTimer(subctrl);
+    }
+
+    function updateTimer(subctrl) {
+	var tDiff = subctrl.pageData.expires - Date.now();
+
+	if (tDiff > 0){
+	    var tDiffMin = Math.floor(tDiff/1000/60);
+	    var tDiffSec = Math.ceil(tDiff/1000 - 60*tDiffMin);
+            timeElem.innerText = pad(tDiffMin,2) + ":" + pad(tDiffSec,2);
+	    //Retrigger function in 1 second
+	    setTimeout(function() { updateTimer(subctrl); }, 1000);
+	} else {
+	    timeElem.innerText = "EXPIRED!";
+	    timeElem.setAttribute("style", "color: red;");
+	}
+    }
+
+    function pad(num, size) {
+	var s = num + "";
+	while (s.length < size) s = "0" + s;
+	return s;
+    }
     
     function checkNearby(subctrl, obj) {
         var d = distance(subctrl.pageData.lat, subctrl.pageData.lng, subctrl.pageData.nearbyPortals[0].lat, subctrl.pageData.nearbyPortals[0].lng);
@@ -563,21 +566,20 @@ function fn_init() {
             map: map
         });
     }
-	
-    var low_quality_modal = document.getElementById("low-quality-modal");
-    if (low_quality_modal != null) return;
 
+    var answerHeader = document.getElementsByClassName("answer-header")[0].getElementsByTagName("DIV")[0].getElementsByTagName("H3")[0].getElementsByTagName("SPAN")[0];
     var NewSubmissionController = w.document.getElementById('NewSubmissionController');
     var subCtrl = w.$scope(NewSubmissionController).subCtrl;
+
     var pageDateInterval = setInterval(function() {
         if (subCtrl.pageData != undefined) {
             clearInterval(pageDateInterval);
 		
 	    createTimer(subCtrl);
             
-            var obj = document.getElementsByClassName("answer-header")[0].getElementsByTagName("DIV")[0].getElementsByTagName("H3")[0].getElementsByTagName("SPAN")[0];
-            if (subCtrl.pageData.nearbyPortals.length > 0) checkNearby(subCtrl, obj);
-            addS2(subCtrl.map, subCtrl.pageData.lat, subCtrl.pageData.lng, 17);
+            if (subCtrl.pageData.nearbyPortals.length > 0) checkNearby(subCtrl, answerHeader);
+            
+	    addS2(subCtrl.map, subCtrl.pageData.lat, subCtrl.pageData.lng, 17);
             addS2(subCtrl.map2, subCtrl.pageData.lat, subCtrl.pageData.lng, 17);
             
             var geocoder = new google.maps.Geocoder;
@@ -586,7 +588,7 @@ function fn_init() {
                     if (results[0]) {
                         var formatted_address = results[0].formatted_address;
                         formatted_address = encodeURI(formatted_address).replace("%EB%8C%80%ED%95%9C%EB%AF%BC%EA%B5%AD", "");
-                        obj.innerHTML += "<br><font style='color: red; font-size: 15px;'>"+decodeURI(formatted_address)+"</font>";
+                        answerHeader.innerHTML += "<br><font style='color: red; font-size: 15px;'>"+decodeURI(formatted_address)+"</font>";
                     }
                 }
             });
