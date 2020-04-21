@@ -596,7 +596,7 @@ function fn_init() {
 	    var topBtn = document.createElement('button');
 	    topBtn.setAttribute("style", "z-index: 9999; position: absolute; left: 0em; top: 70%; background-color: #000; color: #fff; opacity: 0.5;");
 	    topBtn.onclick = function() {
-		window.scrollTo(0, 0);
+		document.querySelector("answer-header").scrollIntoView(true);
 	    };
 	    var topBtnText = document.createTextNode('Top');
 	    topBtn.appendChild(topBtnText);
