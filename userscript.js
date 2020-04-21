@@ -594,9 +594,9 @@ function fn_init() {
             });
             
 	    var topBtn = document.createElement('button');
-	    topBtn.setAttribute("style", "z-index: 9999; position: absolute; left: 0em; top: 70%;");
+	    topBtn.setAttribute("style", "z-index: 9999; position: absolute; left: 0em; top: 70%; background-color: #000; color: #fff;");
 	    topBtn.onclick = function() {
-		document.html.scrollTop = 0;
+		window.scroll(0, 0);
 	    };
 	    var topBtnText = document.createTextNode('Top');
 	    topBtn.appendChild(topBtnText);
