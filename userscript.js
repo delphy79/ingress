@@ -8,6 +8,7 @@ function fn_init() {
     w.$scope = element => w.angular.element(element).scope();
 
     var timeElem;
+	var lowDistCircle, longDistCirle;
 
     var S2 = w.S2 = { L: {} };
 
@@ -486,17 +487,17 @@ function fn_init() {
     };
 	
     function createTimer(subctrl) {
-	var header = document.getElementsByClassName("niantic-wayfarer-logo")[0];
-	var headerTimer = document.createElement("div");
-	headerTimer.innerText = "";
-	headerTimer.setAttribute("style", "display: inline-block; margin-left: 5em;");
-	timeElem = document.createElement("div");
-	timeElem.innerText = "??:??";
-	timeElem.setAttribute("style", "display: inline-block; text-align: right;");
-	headerTimer.appendChild(timeElem);
-	header.parentNode.appendChild(headerTimer);
+	    var header = document.getElementsByClassName("niantic-wayfarer-logo")[0];
+	    var headerTimer = document.createElement("div");
+	    headerTimer.innerText = "";
+	    headerTimer.setAttribute("style", "display: inline-block; margin-left: 5em;");
+	    timeElem = document.createElement("div");
+	    timeElem.innerText = "??:??";
+	    timeElem.setAttribute("style", "display: inline-block; text-align: right;");
+	    headerTimer.appendChild(timeElem);
+	    header.parentNode.appendChild(headerTimer);
 	    
-	updateTimer(subctrl);
+	    updateTimer(subctrl);
     }
 
     function updateTimer(subctrl) {
@@ -515,9 +516,9 @@ function fn_init() {
     }
 
     function pad(num, size) {
-	var s = num + "";
-	while (s.length < size) s = "0" + s;
-	return s;
+	    var s = num + "";
+	    while (s.length < size) s = "0" + s;
+	    return s;
     }
     
     function checkNearby(subctrl, obj) {
@@ -566,6 +567,22 @@ function fn_init() {
             map: map
         });
     }
+	
+	function addLowestDistCircle(subctrl, gMap, hook = false){ 
+	    var latLng = new google.maps.LatLng(subctrl.pageData.lat, subctrl.pageData.lng);
+	    var c = new google.maps.Circle({
+            map: gMap,
+            center: latLng,
+            radius: 20,
+            strokeColor: 'red',
+            fillColor: 'red',
+            strokeOpacity: 0.8,
+            strokeWeight: 1,
+            fillOpacity: 0.2
+  	    });
+	    if (hook)
+		    lowDistCircle = c;
+    }
 
     var answerHeader = document.getElementsByClassName("answer-header")[0].getElementsByTagName("DIV")[0].getElementsByTagName("H3")[0].getElementsByTagName("SPAN")[0];
     var NewSubmissionController = w.document.getElementById('NewSubmissionController');
@@ -575,12 +592,15 @@ function fn_init() {
         if (subCtrl.pageData != undefined) {
             clearInterval(pageDateInterval);
 		
-	    createTimer(subCtrl);
+	        createTimer(subCtrl);
             
             if (subCtrl.pageData.nearbyPortals.length > 0) checkNearby(subCtrl, answerHeader);
             
-	    addS2(subCtrl.map, subCtrl.pageData.lat, subCtrl.pageData.lng, 17);
+	        addS2(subCtrl.map, subCtrl.pageData.lat, subCtrl.pageData.lng, 17);
             addS2(subCtrl.map2, subCtrl.pageData.lat, subCtrl.pageData.lng, 17);
+			
+			addLowestDistCircle(subCtrl.map);
+		    addLowestDistCircle(subCtrl.map2, true);
             
             var geocoder = new google.maps.Geocoder;
             geocoder.geocode({'location': {lat: parseFloat(subCtrl.pageData.lat), lng: parseFloat(subCtrl.pageData.lng)}}, function(results, status) {
