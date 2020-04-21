@@ -594,7 +594,7 @@ function fn_init() {
             });
             
 	    var topBtn = document.createElement('button');
-	    topBtn.setAttribute("style", "z-index: 9999; position: absolute; left: 0em; top: 70%; background-color: #000; color: #fff; opacity: 0.5;");
+	    topBtn.setAttribute("style", "z-index: 9999; position: absolute; left: 0em; top: 90%; background-color: #000; color: #fff; opacity: 0.5;");
 	    topBtn.onclick = function() {
 		//document.getElementById("content-container").scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
 		document.getElementById("content-container").scrollTop = 0;
