@@ -504,10 +504,10 @@ function fn_init() {
 	    var header = document.getElementsByClassName("niantic-wayfarer-logo")[0];
 	    var headerTimer = document.createElement("div");
 	    headerTimer.innerText = "";
-	    headerTimer.setAttribute("style", "display: inline-block; margin-left: 5em;");
+	    headerTimer.setAttribute("style", "display: inline-block; text-align: right;");
 	    timeElem = document.createElement("div");
 	    timeElem.innerText = "??:??";
-	    timeElem.setAttribute("style", "display: inline-block; text-align: right;");
+	    timeElem.setAttribute("style", "display: inline-block;");
 	    headerTimer.appendChild(timeElem);
 	    header.parentNode.appendChild(headerTimer);
 	    
@@ -611,11 +611,11 @@ function fn_init() {
 
             if (subCtrl.pageData.nearbyPortals.length > 0) checkNearby(subCtrl, answerHeader);
             
-	        addS2(subCtrl.map, subCtrl.pageData.lat, subCtrl.pageData.lng, 17);
+            addS2(subCtrl.map, subCtrl.pageData.lat, subCtrl.pageData.lng, 17);
             addS2(subCtrl.map2, subCtrl.pageData.lat, subCtrl.pageData.lng, 17);
 			
-			addLowestDistCircle(subCtrl.map);
-		    addLowestDistCircle(subCtrl.map2, true);
+            addLowestDistCircle(subCtrl.map);
+            addLowestDistCircle(subCtrl.map2, true);
             
             var geocoder = new google.maps.Geocoder;
             geocoder.geocode({'location': {lat: parseFloat(subCtrl.pageData.lat), lng: parseFloat(subCtrl.pageData.lng)}}, function(results, status) {
