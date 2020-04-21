@@ -1,15 +1,8 @@
 setTimeout(function() {fn_init();}, 100);
 
-function fn_init() {
-    //var low_quality_modal = document.getElementById("low-quality-modal");
-    //if (low_quality_modal != null) return;
-    
-    var w = typeof unsafeWindow === 'undefined' ? window : unsafeWindow;
-    w.$scope = element => w.angular.element(element).scope();
-
-    function setupHeader() {
-        var upgradesProfile = document.getElementById("upgrades-profile-icon");
-        if (upgradesProfile != undefined) {
+function setupHeader() {
+    var upgradesProfile = document.getElementById("upgrades-profile-icon");
+    if (upgradesProfile != undefined) {
 	    var progress = upgradesProfile.getAttribute("value");
 
 	    var progressElem = document.createElement("div");
@@ -19,7 +12,16 @@ function fn_init() {
 
 	    profileElem.insertBefore(progressElem, profileElem.children[0]);
 	}
-    }
+}
+
+function fn_init() {
+    //var low_quality_modal = document.getElementById("low-quality-modal");
+    //if (low_quality_modal != null) return;
+    
+    setupHeader();
+    
+    var w = typeof unsafeWindow === 'undefined' ? window : unsafeWindow;
+    w.$scope = element => w.angular.element(element).scope();
 
     var timeElem;
     var lowDistCircle, longDistCirle;
@@ -606,8 +608,7 @@ function fn_init() {
         if (subCtrl.pageData != undefined) {
             clearInterval(pageDateInterval);
 	    
-	    setupHeader();
-            createTimer(subCtrl);
+	    createTimer(subCtrl);
 
             if (subCtrl.pageData.nearbyPortals.length > 0) checkNearby(subCtrl, answerHeader);
             
