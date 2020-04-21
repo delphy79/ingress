@@ -614,8 +614,8 @@ function fn_init() {
             addS2(subCtrl.map, subCtrl.pageData.lat, subCtrl.pageData.lng, 17);
             addS2(subCtrl.map2, subCtrl.pageData.lat, subCtrl.pageData.lng, 17);
 			
-            addLowestDistCircle(subCtrl.map);
-            addLowestDistCircle(subCtrl.map2, true);
+            addLowestDistCircle(subCtrl, subCtrl.map);
+            addLowestDistCircle(subCtrl, subCtrl.map2, true);
             
             var geocoder = new google.maps.Geocoder;
             geocoder.geocode({'location': {lat: parseFloat(subCtrl.pageData.lat), lng: parseFloat(subCtrl.pageData.lng)}}, function(results, status) {
