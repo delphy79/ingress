@@ -7,8 +7,22 @@ function fn_init() {
     var w = typeof unsafeWindow === 'undefined' ? window : unsafeWindow;
     w.$scope = element => w.angular.element(element).scope();
 
+    function setupHeader() {
+        var upgradesProfile = document.getElementById("upgrades-profile-icon");
+        if (upgradesProfile != undefined) {
+	    var progress = upgradesProfile.getAttribute("value");
+
+	    var progressElem = document.createElement("div");
+	    progressElem.innerText = progress + "%";
+
+	    var profileElem = document.getElementsByClassName("inner-container")[1];
+
+	    profileElem.insertBefore(progressElem, profileElem.children[0]);
+	}
+    }
+
     var timeElem;
-	var lowDistCircle, longDistCirle;
+    var lowDistCircle, longDistCirle;
 
     var S2 = w.S2 = { L: {} };
 
@@ -568,9 +582,9 @@ function fn_init() {
         });
     }
 	
-	function addLowestDistCircle(subctrl, gMap, hook = false){ 
-	    var latLng = new google.maps.LatLng(subctrl.pageData.lat, subctrl.pageData.lng);
-	    var c = new google.maps.Circle({
+    function addLowestDistCircle(subctrl, gMap, hook = false){ 
+        var latLng = new google.maps.LatLng(subctrl.pageData.lat, subctrl.pageData.lng);
+	var c = new google.maps.Circle({
             map: gMap,
             center: latLng,
             radius: 20,
@@ -579,9 +593,9 @@ function fn_init() {
             strokeOpacity: 0.8,
             strokeWeight: 1,
             fillOpacity: 0.2
-  	    });
-	    if (hook)
-		    lowDistCircle = c;
+  	});
+	if (hook)
+            lowDistCircle = c;
     }
 
     var answerHeader = document.getElementsByClassName("answer-header")[0].getElementsByTagName("DIV")[0].getElementsByTagName("H3")[0].getElementsByTagName("SPAN")[0];
@@ -591,9 +605,10 @@ function fn_init() {
     var pageDateInterval = setInterval(function() {
         if (subCtrl.pageData != undefined) {
             clearInterval(pageDateInterval);
-		
-	        createTimer(subCtrl);
-            
+	    
+	    setupHeader();
+            createTimer(subCtrl);
+
             if (subCtrl.pageData.nearbyPortals.length > 0) checkNearby(subCtrl, answerHeader);
             
 	        addS2(subCtrl.map, subCtrl.pageData.lat, subCtrl.pageData.lng, 17);
