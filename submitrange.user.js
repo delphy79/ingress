@@ -1,15 +1,12 @@
-Portal submitrange
-This is a IITC plugin. Click install to start using it.
-Install
 // ==UserScript==
 // @id             iitc-plugin-submitrange@wintervorst
 // @name           IITC plugin: Portal submitrange
 // @category       Layer
-// @version        1.0.12.20190613.013370
+// @version        0.1.0
 // @namespace      https://github.com/jonatkins/ingress-intel-total-conversion
-// @updateURL      https://github.com/Wintervorst/iitc/raw/master/plugins/submitrange/submitrange.user.js
-// @downloadURL    https://github.com/Wintervorst/iitc/raw/master/plugins/submitrange/submitrange.user.js
-// @description    [iitc-20190613.013370] Shows the 'too close' radius of existing portals, in order to see where you can search for and submit new candidates
+// @updateURL      https://github.com/delphy79/ingress/raw/master/submitrange.user.js
+// @downloadURL    https://github.com/delphy79/ingress/raw/master/submitrange.user.js
+// @description    Shows the 'too close' radius of existing portals, in order to see where you can search for and submit new candidates
 // @include        https://*.ingress.com/intel*
 // @include        http://*.ingress.com/intel*
 // @match          https://*.ingress.com/intel*
