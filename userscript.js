@@ -605,6 +605,7 @@ function fn_init() {
     var answerHeader2 = document.getElementsByClassName("answer-header")[0].getElementsByTagName("DIV")[0].getElementsByTagName("H3")[0].getElementsByTagName("SPAN")[1];
     var NewSubmissionController = w.document.getElementById('NewSubmissionController');
     var subCtrl = w.$scope(NewSubmissionController).subCtrl;
+    if (!subCtrl) fn_init();
 
     var pageDateInterval = setInterval(function() {
         if (subCtrl.pageData != undefined) {
