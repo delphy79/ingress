@@ -620,12 +620,14 @@ function fn_init() {
             addLowestDistCircle(subCtrl, subCtrl.map);
             addLowestDistCircle(subCtrl, subCtrl.map2, true);
             
-            if (subCtrl.pageData.needsLocationEdit) {
+            if (subCtrl.pageData.locationEdits) {
                 var nSubCtrlScope = angular.element(document.getElementById("NewSubmissionController")).scope();
 		var editMarkers = nSubCtrlScope.getAllLocationMarkers();
-                if (editMarkers[i].position.lat() == subCtrl.pageData.lat
-		    && editMarkers[i].position.lng() == subCtrl.pageData.lng) {
-		    editMarkers[i].setIcon("https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png");
+		for (var i=0; i<editMarkers.length; i++) {
+                    if (editMarkers[i].position.lat() == subCtrl.pageData.lat
+		        && editMarkers[i].position.lng() == subCtrl.pageData.lng) {
+		        editMarkers[i].setIcon("https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png");
+		    }
                 }
 	    }
             
