@@ -517,18 +517,18 @@ function fn_init() {
     }
 
     function updateTimer(subctrl) {
-	var tDiff = subctrl.pageData.expires - Date.now();
-
-	if (tDiff > 0){
-	    var tDiffMin = Math.floor(tDiff/1000/60);
-	    var tDiffSec = Math.ceil(tDiff/1000 - 60*tDiffMin);
+	    var tDiff = subctrl.pageData.expires - Date.now();
+        
+	    if (tDiff > 0){
+	        var tDiffMin = Math.floor(tDiff/1000/60);
+	        var tDiffSec = Math.ceil(tDiff/1000 - 60*tDiffMin);
             timeElem.innerText = pad(tDiffMin,2) + ":" + pad(tDiffSec,2);
-	    //Retrigger function in 1 second
-	    setTimeout(function() { updateTimer(subctrl); }, 1000);
-	} else {
-	    timeElem.innerText = "EXPIRED!";
-	    timeElem.setAttribute("style", "color: red;");
-	}
+	        //Retrigger function in 1 second
+	        setTimeout(function() { updateTimer(subctrl); }, 1000);
+	    } else {
+	        timeElem.innerText = "EXPIRED!";
+	        timeElem.setAttribute("style", "color: red;");
+	    }
     }
 
     function pad(num, size) {
@@ -548,8 +548,7 @@ function fn_init() {
     function distance(lat1, lon1, lat2, lon2) {
         if ((lat1 == lat2) && (lon1 == lon2)) {
             return 0;
-        }
-        else {
+        } else {
             var radlat1 = Math.PI * lat1/180;
             var radlat2 = Math.PI * lat2/180;
             var theta = lon1-lon2;
@@ -587,7 +586,7 @@ function fn_init() {
 	
     function addLowestDistCircle(subctrl, gMap, hook = false){ 
         var latLng = new google.maps.LatLng(subctrl.pageData.lat, subctrl.pageData.lng);
-	var c = new google.maps.Circle({
+	    var c = new google.maps.Circle({
             map: gMap,
             center: latLng,
             radius: 20,
@@ -596,25 +595,26 @@ function fn_init() {
             strokeOpacity: 0.8,
             strokeWeight: 1,
             fillOpacity: 0.2
-  	});
-	if (hook)
-            lowDistCircle = c;
+  	    });
+	    if (hook) lowDistCircle = c;
     }
 
     var answerHeader1 = document.getElementsByClassName("answer-header")[0].getElementsByTagName("DIV")[0].getElementsByTagName("H3")[0].getElementsByTagName("SPAN")[0];
     var answerHeader2 = document.getElementsByClassName("answer-header")[0].getElementsByTagName("DIV")[0].getElementsByTagName("H3")[0].getElementsByTagName("SPAN")[1];
     var NewSubmissionController = w.document.getElementById('NewSubmissionController');
-    var subCtrl = w.$scope(NewSubmissionController).subCtrl;
-    if (!subCtrl) {
-        fn_init();
-        return;
-    }
+    var subCtrl = null;
+	try {
+		subCtrl = w.$scope(NewSubmissionController).subCtrl;
+	} catch (e) {
+		fn_init();
+		return;
+	}
 
     var pageDateInterval = setInterval(function() {
         if (subCtrl.pageData != undefined) {
             clearInterval(pageDateInterval);
-	    
-	    createTimer(subCtrl);
+	        
+	        createTimer(subCtrl);
 
             if (subCtrl.pageData.nearbyPortals.length > 0) checkNearby(subCtrl, answerHeader1, answerHeader2);
             
@@ -625,15 +625,14 @@ function fn_init() {
             addLowestDistCircle(subCtrl, subCtrl.map2, true);
             
             if (subCtrl.pageData.locationEdits) {
-                var nSubCtrlScope = angular.element(document.getElementById("NewSubmissionController")).scope();
-		var editMarkers = nSubCtrlScope.getAllLocationMarkers();
-		for (var i=0; i<editMarkers.length; i++) {
+		        var editMarkers = w.$scope(NewSubmissionController).getAllLocationMarkers();
+		        for (var i=0; i<editMarkers.length; i++) {
                     if (editMarkers[i].position.lat() == subCtrl.pageData.lat
-		        && editMarkers[i].position.lng() == subCtrl.pageData.lng) {
-		        editMarkers[i].setIcon("https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png");
-		    }
+		                && editMarkers[i].position.lng() == subCtrl.pageData.lng) {
+		                editMarkers[i].setIcon("https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png");
+		            }
                 }
-	    }
+	        }
             
             var geocoder = new google.maps.Geocoder;
             geocoder.geocode({'location': {lat: parseFloat(subCtrl.pageData.lat), lng: parseFloat(subCtrl.pageData.lng)}}, function(results, status) {
