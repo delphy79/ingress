@@ -537,10 +537,11 @@ function fn_init() {
 	    return s;
     }
     
-    function checkNearby(subctrl, obj) {
+    function checkNearby(subctrl, obj1, obj2) {
         var d = distance(subctrl.pageData.lat, subctrl.pageData.lng, subctrl.pageData.nearbyPortals[0].lat, subctrl.pageData.nearbyPortals[0].lng);
         if (d < 20) {
-            obj.innerHTML +=  "<font style='color: red'>&nbsp;Too Close</font>";
+            if (obj1 != undefined || obj1 != null) obj1.innerHTML +=  "<font style='color: red'>&nbsp;Too Close</font>";
+            if (obj2 != undefined || obj2 != null) obj2.innerHTML +=  "<font style='color: red'>&nbsp;Too Close</font>";
         }
     }
 
@@ -600,7 +601,8 @@ function fn_init() {
             lowDistCircle = c;
     }
 
-    var answerHeader = document.getElementsByClassName("answer-header")[0].getElementsByTagName("DIV")[0].getElementsByTagName("H3")[0].getElementsByTagName("SPAN")[0];
+    var answerHeader1 = document.getElementsByClassName("answer-header")[0].getElementsByTagName("DIV")[0].getElementsByTagName("H3")[0].getElementsByTagName("SPAN")[0];
+    var answerHeader2 = document.getElementsByClassName("answer-header")[0].getElementsByTagName("DIV")[0].getElementsByTagName("H3")[0].getElementsByTagName("SPAN")[1];
     var NewSubmissionController = w.document.getElementById('NewSubmissionController');
     var subCtrl = w.$scope(NewSubmissionController).subCtrl;
 
@@ -610,7 +612,7 @@ function fn_init() {
 	    
 	    createTimer(subCtrl);
 
-            if (subCtrl.pageData.nearbyPortals.length > 0) checkNearby(subCtrl, answerHeader);
+            if (subCtrl.pageData.nearbyPortals.length > 0) checkNearby(subCtrl, answerHeader1, answerHeader2);
             
             addS2(subCtrl.map, subCtrl.pageData.lat, subCtrl.pageData.lng, 17);
             addS2(subCtrl.map2, subCtrl.pageData.lat, subCtrl.pageData.lng, 17);
@@ -624,7 +626,8 @@ function fn_init() {
                     if (results[0]) {
                         var formatted_address = results[0].formatted_address;
                         formatted_address = encodeURI(formatted_address).replace("%EB%8C%80%ED%95%9C%EB%AF%BC%EA%B5%AD", "");
-                        answerHeader.innerHTML += "<br><font style='color: red; font-size: 15px;'>"+decodeURI(formatted_address)+"</font>";
+                        if (answerHeader1 != undefined || answerHeader1 != null) answerHeader1.innerHTML += "<br><font style='color: red; font-size: 15px;'>"+decodeURI(formatted_address)+"</font>";
+                        if (answerHeader2 != undefined || answerHeader2 != null) answerHeader2.innerHTML += "<br><font style='color: red; font-size: 15px;'>"+decodeURI(formatted_address)+"</font>";
                     }
                 }
             });
