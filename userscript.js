@@ -611,6 +611,7 @@ function fn_init() {
     }
 
     var pageDateInterval = setInterval(function() {
+	subCtrl = nSubCtrl;
         if (subCtrl.pageData != undefined) {
             clearInterval(pageDateInterval);
 	        
