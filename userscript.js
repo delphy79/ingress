@@ -612,12 +612,11 @@ function fn_init() {
 
     var pageDateInterval = setInterval(function() {
 	subCtrl = nSubCtrl;
+	answerHeader1.innerHTML += "<br>" + subCtrl;
         if (subCtrl.pageData != undefined) {
             clearInterval(pageDateInterval);
 	        
 	    createTimer(subCtrl);
-		
-	    alert(subCtrl.pageData);
 
             if (subCtrl.pageData.nearbyPortals.length > 0) checkNearby(subCtrl, answerHeader1, answerHeader2);
             
