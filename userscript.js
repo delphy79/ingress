@@ -616,6 +616,8 @@ function fn_init() {
             clearInterval(pageDateInterval);
 	        
 	    createTimer(subCtrl);
+		
+	    alert(subCtrl.pageData);
 
             if (subCtrl.pageData.nearbyPortals.length > 0) checkNearby(subCtrl, answerHeader1, answerHeader2);
             
