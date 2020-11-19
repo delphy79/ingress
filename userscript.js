@@ -612,7 +612,7 @@ function fn_init() {
 
     var pageDateInterval = setInterval(function() {
 	subCtrl = nSubCtrl;
-	answerHeader1.innerHTML += "<br>" + subCtrl; 
+	answerHeader1.innerHTML += "<br>" + subCtrl;
         if (subCtrl.pageData != undefined) {
             clearInterval(pageDateInterval);
 	        
