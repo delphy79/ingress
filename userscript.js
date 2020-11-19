@@ -601,7 +601,7 @@ function fn_init() {
 
     var answerHeader1 = document.getElementsByClassName("answer-header")[0].getElementsByTagName("DIV")[0].getElementsByTagName("H3")[0].getElementsByTagName("SPAN")[0];
     var answerHeader2 = document.getElementsByClassName("answer-header")[0].getElementsByTagName("DIV")[0].getElementsByTagName("H3")[0].getElementsByTagName("SPAN")[1];
-    var NewSubmissionController = w.document.getElementById('NewSubmissionController');
+    //var NewSubmissionController = w.document.getElementById('NewSubmissionController');
     var subCtrl = null;
     /*try {
         subCtrl = w.$scope(NewSubmissionController).subCtrl;
@@ -627,7 +627,8 @@ function fn_init() {
             
             if (subCtrl.pageData.locationEdits) {
                 addS2(subCtrl.locationEditsMap, subCtrl.pageData.lat, subCtrl.pageData.lng);
-                var editMarkers = w.$scope(NewSubmissionController).getAllLocationMarkers();
+                //var editMarkers = w.$scope(NewSubmissionController).getAllLocationMarkers();
+		var editMarkers = subCtrl.getAllLocationMarkers();
                 for (var i=0; i<editMarkers.length; i++) {
                     if (editMarkers[i].position.lat() == subCtrl.pageData.lat
                         && editMarkers[i].position.lng() == subCtrl.pageData.lng) {
