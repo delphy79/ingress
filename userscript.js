@@ -629,7 +629,7 @@ function fn_init() {
             
             if (subCtrl.pageData.locationEdits) {
                 addS2(subCtrl.locationEditsMap, subCtrl.pageData.lat, subCtrl.pageData.lng);
-                //var editMarkers = w.$scope(NewSubmissionController).getAllLocationMarkers(); 
+                //var editMarkers = w.$scope(NewSubmissionController).getAllLocationMarkers();
 		var editMarkers = subCtrl.getAllLocationMarkers();
                 for (var i=0; i<editMarkers.length; i++) {
                     if (editMarkers[i].position.lat() == subCtrl.pageData.lat
