@@ -603,12 +603,12 @@ function fn_init() {
     var answerHeader2 = document.getElementsByClassName("answer-header")[0].getElementsByTagName("DIV")[0].getElementsByTagName("H3")[0].getElementsByTagName("SPAN")[1];
     var NewSubmissionController = w.document.getElementById('NewSubmissionController');
     var subCtrl = null;
-    try {
+    /*try {
         subCtrl = w.$scope(NewSubmissionController).subCtrl;
     } catch (e) {
         fn_init();
         return;
-    }
+    }*/
 
     var pageDateInterval = setInterval(function() {
 	subCtrl = nSubCtrl;
