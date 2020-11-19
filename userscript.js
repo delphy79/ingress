@@ -1,4 +1,15 @@
-setTimeout(function() {fn_init();}, 100);
+setTimeout(function() {fn_initNew();}, 100);
+
+function fn_initNew() {
+    var pageDataInterval = setInterval(function() {
+	if (nSubCtrl != undefined) {
+            clearInterval(pageDataInterval);
+            document.getElementsByClassName("inner-container")[1].innerHtml = "1111111111111";
+	}
+    }, 100);
+}
+
+//setTimeout(function() {fn_init();}, 100);
 
 function setupHeader() {
     var upgradesProfile = document.getElementById("upgrades-profile-icon");
@@ -602,10 +613,10 @@ function fn_init() {
     var answerHeader1 = document.getElementsByClassName("answer-header")[0].getElementsByTagName("DIV")[0].getElementsByTagName("H3")[0].getElementsByTagName("SPAN")[0];
     var answerHeader2 = document.getElementsByClassName("answer-header")[0].getElementsByTagName("DIV")[0].getElementsByTagName("H3")[0].getElementsByTagName("SPAN")[1];
     //var NewSubmissionController = w.document.getElementById('NewSubmissionController');
+    var ReviewNewController = w.document.getElementById('ReviewNewController');
     var subCtrl = null;
     try {
-        //subCtrl = w.$scope(NewSubmissionController).subCtrl;
-	subCtrl = nSubCtrl;
+        subCtrl = w.$scope(ReviewNewController).subCtrl;
     } catch (e) {
         fn_init();
         return;
