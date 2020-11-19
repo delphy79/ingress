@@ -603,18 +603,17 @@ function fn_init() {
     var answerHeader2 = document.getElementsByClassName("answer-header")[0].getElementsByTagName("DIV")[0].getElementsByTagName("H3")[0].getElementsByTagName("SPAN")[1];
     //var NewSubmissionController = w.document.getElementById('NewSubmissionController');
     var subCtrl = null;
-    /*try {
-        subCtrl = w.$scope(NewSubmissionController).subCtrl;
+    try {
+        //subCtrl = w.$scope(NewSubmissionController).subCtrl;
+	subCtrl = nSubCtrl;
     } catch (e) {
         fn_init();
         return;
-    }*/
+    }
 
-    var pageDateInterval = setInterval(function() {
-	subCtrl = nSubCtrl;
-	answerHeader1.innerHTML += "<br>" + subCtrl;
-        if (subCtrl.pageData != undefined) {
-            clearInterval(pageDateInterval);
+    var pageDataInterval = setInterval(function() {
+	if (subCtrl.pageData != undefined) {
+            clearInterval(pageDataInterval);
 	        
 	    createTimer(subCtrl);
 
