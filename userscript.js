@@ -1,3 +1,5 @@
+setTimeout(function() {fn_init();}, 100);
+
 function setupHeader() {
     var upgradesProfile = document.getElementById("upgrades-profile-icon");
     if (upgradesProfile != undefined) {
