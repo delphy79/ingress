@@ -2,7 +2,7 @@ setTimeout(function() {fn_initNew();}, 100);
 
 function fn_initNew() {
     var pageDataInterval = setInterval(function() {
-	if (nSubCtrl != undefined) {
+	if (reviewCtrl != undefined) {
             clearInterval(pageDataInterval);
             document.getElementsByClassName("inner-container")[1].innerHtml = "1111111111111";
 	}
