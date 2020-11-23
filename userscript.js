@@ -3,15 +3,12 @@ setTimeout(function() {fn_init();}, 100);
 function setupHeader() {
     var upgradesProfile = document.getElementById("upgrades-profile-icon");
     if (upgradesProfile != undefined) {
-	    var progress = upgradesProfile.getAttribute("value");
-
-	    var progressElem = document.createElement("div");
-	    progressElem.innerText = progress + "%";
-
-	    var profileElem = document.getElementsByClassName("inner-container")[1];
-
-	    profileElem.insertBefore(progressElem, profileElem.children[0]);
-	}
+        var progress = upgradesProfile.getAttribute("value");
+        var progressElem = document.createElement("div");
+        progressElem.innerText = progress + "%";
+        var profileElem = document.getElementsByClassName("inner-container")[1];
+        profileElem.insertBefore(progressElem, profileElem.children[0]);
+    }
 }
 
 function fn_init() {
@@ -606,8 +603,9 @@ function fn_init() {
     var subCtrl = w.$scope(ReviewNewController).reviewCtrl;
 
     var pageDataInterval = setInterval(function() {
+	alert(subCtrl.pageData);
 	if (subCtrl.pageData != undefined) {
-            clearInterval(pageDataInterval);
+	    clearInterval(pageDataInterval);
 	        
 	    createTimer(subCtrl);
 
