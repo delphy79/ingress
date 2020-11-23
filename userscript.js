@@ -601,7 +601,7 @@ function fn_init() {
     //var NewSubmissionController = w.document.getElementById('NewSubmissionController');
     
     var pageDataInterval = setInterval(function() {
-	var ReviewNewController = w.document.getElementById('ReviewNewController');
+	var ReviewNewController = document.getElementById('ReviewNewController');
 	alert(ReviewNewController);
 	if (ReviewNewController == null) return;
 	
