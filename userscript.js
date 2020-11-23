@@ -601,11 +601,11 @@ function fn_init() {
     //var NewSubmissionController = w.document.getElementById('NewSubmissionController');
     
     var pageDataInterval = setInterval(function() {
-	var ReviewNewController = document.getElementById('ReviewNewController');
-	alert(ReviewNewController);
-	if (ReviewNewController == null) return;
+	var ReviewController = w.document.getElementById('ReviewController');
+	alert(ReviewController);
+	if (ReviewController == null) return;
 	
-        var subCtrl = w.$scope(ReviewNewController).reviewCtrl;
+        var subCtrl = w.$scope(ReviewController).reviewCtrl;
 	if (subCtrl.pageData != undefined) {
 	    clearInterval(pageDataInterval);
 	        
