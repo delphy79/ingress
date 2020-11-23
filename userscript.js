@@ -12,7 +12,6 @@ function setupHeader() {
 }
 
 function fn_init() {
-    alert("fn_init");
     //var low_quality_modal = document.getElementById("low-quality-modal");
     //if (low_quality_modal != null) return;
     
@@ -603,10 +602,10 @@ function fn_init() {
     
     var pageDataInterval = setInterval(function() {
 	var ReviewNewController = w.document.getElementById('ReviewNewController');
+	alert(ReviewNewController);
 	if (ReviewNewController == null) return;
 	
         var subCtrl = w.$scope(ReviewNewController).reviewCtrl;
-	alert(subCtrl.pageData);
 	if (subCtrl.pageData != undefined) {
 	    clearInterval(pageDataInterval);
 	        
