@@ -1,18 +1,3 @@
-setTimeout(function() {fn_initNew();}, 100);
-
-function fn_initNew() {
-    var pageDataInterval = setInterval(function() {
-	var ReviewNewController = w.document.getElementById('ReviewNewController');
-	var rCtrl = w.$scope(ReviewNewController);
-	if (rCtrl != undefined) {
-            clearInterval(pageDataInterval);
-            document.getElementsByClassName("inner-container")[1].innerHtml = "1111111111111";
-	}
-    }, 100);
-}
-
-//setTimeout(function() {fn_init();}, 100);
-
 function setupHeader() {
     var upgradesProfile = document.getElementById("upgrades-profile-icon");
     if (upgradesProfile != undefined) {
@@ -618,7 +603,7 @@ function fn_init() {
     var ReviewNewController = w.document.getElementById('ReviewNewController');
     var subCtrl = null;
     try {
-        subCtrl = w.$scope(ReviewNewController).subCtrl;
+        subCtrl = w.$scope(ReviewNewController).reviewCtrl;
     } catch (e) {
         fn_init();
         return;
