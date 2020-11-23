@@ -603,13 +603,7 @@ function fn_init() {
     var answerHeader2 = document.getElementsByClassName("answer-header")[0].getElementsByTagName("DIV")[0].getElementsByTagName("H3")[0].getElementsByTagName("SPAN")[1];
     //var NewSubmissionController = w.document.getElementById('NewSubmissionController');
     var ReviewNewController = w.document.getElementById('ReviewNewController');
-    var subCtrl = null;
-    try {
-        subCtrl = w.$scope(ReviewNewController).reviewCtrl;
-    } catch (e) {
-        fn_init();
-        return;
-    }
+    var subCtrl = w.$scope(ReviewNewController).reviewCtrl;
 
     var pageDataInterval = setInterval(function() {
 	if (subCtrl.pageData != undefined) {
