@@ -598,11 +598,9 @@ function fn_init() {
 
     var answerHeader1 = document.getElementsByClassName("answer-header")[0].getElementsByTagName("DIV")[0].getElementsByTagName("H3")[0].getElementsByTagName("SPAN")[0];
     var answerHeader2 = document.getElementsByClassName("answer-header")[0].getElementsByTagName("DIV")[0].getElementsByTagName("H3")[0].getElementsByTagName("SPAN")[1];
-    //var NewSubmissionController = w.document.getElementById('NewSubmissionController');
     
     var pageDataInterval = setInterval(function() {
 	var ReviewController = w.document.getElementById('ReviewController');
-	alert(ReviewController);
 	if (ReviewController == null) return;
 	
         var subCtrl = w.$scope(ReviewController).reviewCtrl;
