@@ -12,6 +12,7 @@ function setupHeader() {
 }
 
 function fn_init() {
+    alert("fn_init");
     //var low_quality_modal = document.getElementById("low-quality-modal");
     //if (low_quality_modal != null) return;
     
