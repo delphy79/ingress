@@ -2,7 +2,9 @@ setTimeout(function() {fn_initNew();}, 100);
 
 function fn_initNew() {
     var pageDataInterval = setInterval(function() {
-	if (reviewCtrl != undefined) {
+	var ReviewNewController = w.document.getElementById('ReviewNewController');
+	var rCtrl = w.$scope(ReviewNewController);
+	if (rCtrl != undefined) {
             clearInterval(pageDataInterval);
             document.getElementsByClassName("inner-container")[1].innerHtml = "1111111111111";
 	}
