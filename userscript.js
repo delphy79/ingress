@@ -599,10 +599,12 @@ function fn_init() {
     var answerHeader1 = document.getElementsByClassName("answer-header")[0].getElementsByTagName("DIV")[0].getElementsByTagName("H3")[0].getElementsByTagName("SPAN")[0];
     var answerHeader2 = document.getElementsByClassName("answer-header")[0].getElementsByTagName("DIV")[0].getElementsByTagName("H3")[0].getElementsByTagName("SPAN")[1];
     //var NewSubmissionController = w.document.getElementById('NewSubmissionController');
-    var ReviewNewController = w.document.getElementById('ReviewNewController');
-    var subCtrl = w.$scope(ReviewNewController).reviewCtrl;
-
+    
     var pageDataInterval = setInterval(function() {
+	var ReviewNewController = w.document.getElementById('ReviewNewController');
+	if (ReviewNewController == null) return;
+	
+        var subCtrl = w.$scope(ReviewNewController).reviewCtrl;
 	alert(subCtrl.pageData);
 	if (subCtrl.pageData != undefined) {
 	    clearInterval(pageDataInterval);
